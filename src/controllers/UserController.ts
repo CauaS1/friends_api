@@ -15,3 +15,20 @@ export const register = async (req: Request, res: Response) => {
 
   return res.json({ user });
 }
+
+export const editUser = async (req: Request, res: Response) => {
+  const { id } = req.params;
+  const { photo, about, age } = req.body;
+
+  const user = await getRepository(User).findOne({
+    where: { id: id }
+  });
+
+  user.about = about;
+  user.age = age;
+  user.photo = photo;
+
+  const update_user = await getRepository(User).save(user);
+
+  return res.json({ update_user });
+}

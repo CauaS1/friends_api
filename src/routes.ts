@@ -1,10 +1,10 @@
 import { Router } from 'express';
-import { register, users } from './controllers/UserController';
+import { editUser, register, users } from './controllers/UserController';
 
 const routes = Router();
 
 routes.get('/', users);
 routes.post('/register', register);
-
+routes.put('/user/edit/:id', editUser);
 
 export default routes;
