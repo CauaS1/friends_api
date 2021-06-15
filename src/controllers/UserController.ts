@@ -7,6 +7,15 @@ export const users = async (req: Request, res: Response) => {
   return res.json({ users });
 }
 
+export const getUser = async (req: Request, res: Response) => {
+  const { id } = req.params;
+  const user = await getRepository(User).findOne({
+    where: { id: id }
+  });
+
+  return res.json({ user });
+}
+
 export const register = async (req: Request, res: Response) => {
   const { name, email, password } = req.body;
   const user = await getRepository(User).save({
