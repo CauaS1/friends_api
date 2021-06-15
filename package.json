@@ -4,7 +4,9 @@
   "description": "Awesome project developed with TypeORM.",
   "scripts": {
     "start": "ts-node src/index.ts",
-    "dev": "ts-node-dev --inspect --transpile-only --ignore-watch node_modules src/index.ts"
+    "dev": "ts-node-dev --inspect --transpile-only --ignore-watch node_modules src/index.ts",
+    "migration:run": "ts-node --transpile-only ./node_modules/typeorm/cli.js migration:run",
+    "migration:revert": "ts-node --transpile-only ./node_modules/typeorm/cli.js migration:revert"
   },
   "devDependencies": {
     "@types/bcrypt": "^5.0.0",
@@ -19,6 +21,7 @@
   "dependencies": {
     "bcrypt": "^5.0.1",
     "cors": "^2.8.5",
+    "dotenv-safe": "^8.2.0",
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
     "pg": "^8.4.0",
