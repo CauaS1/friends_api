@@ -63,7 +63,7 @@ export const login = async (req: Request, res: Response) => {
 
 export const editUser = async (req: Request, res: Response) => {
   const { id } = req.params;
-  const { photo, about, age } = req.body;
+  const { photo, about, age, longitude, latitude } = req.body;
 
   const user = await getRepository(User).findOne({
     where: { id: id }
@@ -72,6 +72,8 @@ export const editUser = async (req: Request, res: Response) => {
   user.about = about;
   user.age = age;
   user.photo = photo;
+  user.longitude = longitude;
+  user.latitude = latitude;
 
   const update_user = await getRepository(User).save(user);
 

@@ -44,6 +44,16 @@ export class User1623504195150 implements MigrationInterface {
             default: 0
           },
           {
+            name: 'longitude',
+            type: 'decimal',
+            default: 0,
+          },
+          {
+            name: 'latitude',
+            type: 'decimal',
+            default: 0,
+          },
+          {
             name: 'created_at',
             type: 'timestamp',
             default: 'now()'

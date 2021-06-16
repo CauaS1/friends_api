@@ -23,6 +23,12 @@ export class User {
   @Column()
   age: number;
 
+  @Column()
+  longitude: number;
+
+  @Column()
+  latitude: number;
+
   @CreateDateColumn()
   created_at: Date;
 
