@@ -63,7 +63,15 @@ export class User1623504195150 implements MigrationInterface {
             type: 'timestamp',
             default: 'now()'
           }
-        ]
+        ],
+        // foreignKeys: [
+        //   {
+        //     name: 'providerUser',
+        //     referencedTableName: 'message',
+        //     referencedColumnNames: ['id'],
+        //     columnNames: ['user_message']
+        //   }
+        // ]
       })
     )
   }
@@ -73,3 +81,9 @@ export class User1623504195150 implements MigrationInterface {
   }
 
 }
+
+//foreignKeys: [ 
+  // { // name: 'providerUser',
+   // referencedTableName: 'message',
+    // referencedColumnNames: ['id'], 
+    // columnNames: ['user_message'], // onDelete: 'CASCADE', // onUpdate: 'CASCADE' // } // ]
