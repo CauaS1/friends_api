@@ -15,19 +15,19 @@ export class User {
   @Column()
   name: string;
 
-  @Column()
+  @Column({ nullable: true, default: undefined })
   photo: string;
 
-  @Column()
+  @Column({ nullable: true, default: undefined })
   about: string;
 
-  @Column()
+  @Column({ nullable: true, default: 0 })
   age: number;
 
-  @Column()
+  @Column({ nullable: true, default: 0 })
   longitude: number;
 
-  @Column()
+  @Column({ nullable: true, default: 0 })
   latitude: number;
 
   @CreateDateColumn()
