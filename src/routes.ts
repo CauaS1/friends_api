@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { sendMessage } from './controllers/MessageController';
+import { getMessage, sendMessage } from './controllers/MessageController';
 import { editUser, getUser, login, register, users } from './controllers/UserController';
 
 const routes = Router();
@@ -12,5 +12,7 @@ routes.put('/user/edit/:id', editUser);
 
 // Messages
 routes.post('/chat/:sendToId', sendMessage);
+routes.get('/chat/:userId', getMessage);
+
 
 export default routes;

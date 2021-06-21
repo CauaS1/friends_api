@@ -14,3 +14,13 @@ export const sendMessage = async (req: Request, res: Response) => {
 
   return res.json({ message });
 }
+
+export const getMessage = async (req: Request, res: Response) => {
+  const { userId } = req.params;
+
+  const messages = await getRepository(Message).find({
+    where: { sendTo: userId }
+  });
+
+  return res.json({ messages });
+}
