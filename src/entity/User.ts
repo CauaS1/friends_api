@@ -1,5 +1,6 @@
-import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, ManyToMany, JoinTable } from "typeorm";
-import { Message } from "./Message";
+import { type } from "os";
+import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, ManyToMany, JoinTable, OneToMany, JoinColumn } from "typeorm";
+import { Post } from "./Post";
 
 @Entity('user')
 export class User {
@@ -30,13 +31,19 @@ export class User {
   @Column({ nullable: true, default: 0 })
   latitude: number;
 
+  @Column({ nullable: true, default: undefined })
+  instagram: string;
+
+  @Column({ nullable: true, default: undefined })
+  whatsapp: string;
+
   @CreateDateColumn()
   created_at: Date;
 
   @UpdateDateColumn()
   updated_at: Date;
 
-  @ManyToMany(type => Message)
-  @JoinTable()
-  messages: Message[];
+  @OneToMany(() => Post, post => post.id)
+  @JoinColumn()
+  post: Post;
 }
