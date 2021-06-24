@@ -1,5 +1,4 @@
-import { type } from "os";
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { User } from "./User";
 
 @Entity()
@@ -12,4 +11,7 @@ export class Post {
 
   @Column({ nullable: true })
   description: string;
+
+  @ManyToOne(() => User, user => user.posts)
+  user: User;
 }

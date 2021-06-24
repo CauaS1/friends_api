@@ -1,5 +1,5 @@
 import { type } from "os";
-import { MigrationInterface, QueryRunner, Table } from "typeorm";
+import { MigrationInterface, QueryRunner, Table, TableForeignKey } from "typeorm";
 
 export class User1624545117458 implements MigrationInterface {
   name = 'User1624545117458'
@@ -77,18 +77,26 @@ export class User1624545117458 implements MigrationInterface {
             name: 'updated_at',
             type: 'date',
             default: 'now()'
+          },
+          {
+            name: "postId",
+            type: "uuid",
+            isUnique: true,
+            isNullable: true,
+            default: undefined
           }
         ],
-        foreignKeys: [
-          {
-            name: "userPosts",
-            referencedTableName: "post",
-            referencedColumnNames: ["id"],
-            columnNames: ["postId"],
-          }
-        ]
       })
     )
+
+    const foreignKey = new TableForeignKey({
+      columnNames: ["id"], // and here to postId
+      referencedColumnNames: ["id"],
+      referencedTableName: "post", //test changing here to: user
+      onDelete: "CASCADE"
+    });
+
+    await queryRunner.createForeignKey("user", foreignKey); // and here to post
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {

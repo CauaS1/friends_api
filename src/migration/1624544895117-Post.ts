@@ -1,4 +1,4 @@
-import { MigrationInterface, QueryRunner, Table } from "typeorm";
+import { MigrationInterface, QueryRunner, Table, TableForeignKey } from "typeorm";
 
 export class Post1624544895117 implements MigrationInterface {
 
@@ -22,8 +22,8 @@ export class Post1624544895117 implements MigrationInterface {
             name: 'description',
             type: 'varchar',
             isNullable: true
-          }
-        ]
+          },
+        ],
       })
     )
   }
