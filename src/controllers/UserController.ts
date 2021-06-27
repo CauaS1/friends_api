@@ -12,11 +12,18 @@ export const users = async (req: Request, res: Response) => {
 
 export const getUser = async (req: Request, res: Response) => {
   const { id } = req.params;
-  const user = await getRepository(User).findOne({
-    where: { id: id }
-  });
 
-  return res.json({ user });
+  try {
+    const user = await getRepository(User).findOne({
+      where: { id: id }
+    })
+
+    return res.json({ user });
+
+  } catch (err) {
+    return res.json({ error: err.message });
+
+  }
 }
 
 export const register = async (req: Request, res: Response) => {
@@ -43,7 +50,7 @@ export const login = async (req: Request, res: Response) => {
   const { email, password } = req.body;
 
   await getRepository(User).findOne({
-    where: { email: Equal(email) } 
+    where: { email: Equal(email) }
   }).then(data => { // if email exist, check the password
     const hash = bcrypt.compareSync(password, data.password);
     if (hash) {
@@ -65,17 +72,22 @@ export const editUser = async (req: Request, res: Response) => {
   const { id } = req.params;
   const { photo, about, age, longitude, latitude } = req.body;
 
-  const user = await getRepository(User).findOne({
-    where: { id: id }
-  });
+  try {
+    const user = await getRepository(User).findOne({
+      where: { id: id }
+    });
 
-  user.about = about;
-  user.age = age;
-  user.photo = photo;
-  user.longitude = longitude;
-  user.latitude = latitude;
+    user.about = about;
+    user.age = age;
+    user.photo = photo;
+    user.longitude = longitude;
+    user.latitude = latitude;
 
-  const update_user = await getRepository(User).save(user);
+    const update_user = await getRepository(User).save(user);
 
-  return res.json({ update_user });
+    return res.json({ update_user });
+  } catch (err) {
+    return res.json({ error: err.message });
+  }
+
 }

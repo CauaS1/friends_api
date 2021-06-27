@@ -25,10 +25,10 @@ export class User {
   @Column({ nullable: true, default: 0 })
   age: number;
 
-  @Column({ nullable: true, default: 0 })
+  @Column({ nullable: true, default: 0, type: 'real' })
   longitude: number;
 
-  @Column({ nullable: true, default: 0 })
+  @Column({ nullable: true, default: 0, type: 'real' })
   latitude: number;
 
   @Column({ nullable: true, default: undefined })

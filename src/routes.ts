@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { getPhotos, postPhoto } from './controllers/PostController';
+import { getPosts, getUserPosts, postPhoto } from './controllers/PostController';
 import { editUser, getUser, login, register, users } from './controllers/UserController';
 
 const routes = Router();
@@ -12,7 +12,8 @@ routes.put('/user/edit/:id', editUser);
 
 // Posts
 routes.post('/post', postPhoto);
-routes.get('/posts', getPhotos)
+routes.get('/posts', getPosts);
+routes.get('/user/posts/:id', getUserPosts)
 
 
 export default routes;
