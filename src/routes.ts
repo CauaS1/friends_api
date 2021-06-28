@@ -15,5 +15,4 @@ routes.post('/post', postPhoto);
 routes.get('/posts', getPosts);
 routes.get('/user/posts/:id', getUserPosts)
 
-
 export default routes;

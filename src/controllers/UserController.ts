@@ -70,24 +70,24 @@ export const login = async (req: Request, res: Response) => {
 
 export const editUser = async (req: Request, res: Response) => {
   const { id } = req.params;
-  const { photo, about, age, longitude, latitude } = req.body;
+  const { name, photo, about, age, instagram, whatsapp } = req.body;
 
   try {
     const user = await getRepository(User).findOne({
       where: { id: id }
     });
 
+    user.name = name;
+    user.photo = photo;
     user.about = about;
     user.age = age;
-    user.photo = photo;
-    user.longitude = longitude;
-    user.latitude = latitude;
+    user.instagram = instagram;
+    user.whatsapp = whatsapp;
 
-    const update_user = await getRepository(User).save(user);
+    const updated_user = await getRepository(User).save(user);
 
-    return res.json({ update_user });
+    return res.json(updated_user);
   } catch (err) {
     return res.json({ error: err.message });
   }
-
 }
