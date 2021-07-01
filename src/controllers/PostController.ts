@@ -7,11 +7,17 @@ export const postPhoto = async (req: Request, res: Response) => {
   const { photo, description, userId } = req.body;
 
   try {
-    const post = await getRepository(Post).save({
-      photo, description, user: userId,
-    });
+
+    if (photo !== '' && description !== '') {
+      const post = await getRepository(Post).save({
+        photo, description, user: userId,
+      });
 
     return res.json(post);
+    } else {
+
+    }
+    return res.json({ msg: 'You need to add a photo and a description' });
   } catch (err) {
     return res.json({ error: err });
   }
