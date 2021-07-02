@@ -7,19 +7,17 @@ export const postPhoto = async (req: Request, res: Response) => {
   const { photo, description, userId } = req.body;
 
   try {
-
     if (photo !== '' && description !== '') {
       const post = await getRepository(Post).save({
         photo, description, user: userId,
       });
 
-    return res.json(post);
+      return res.json(post);
     } else {
-
+      return res.status(400).json({ msg: 'You need to add a photo and a description' });
     }
-    return res.json({ msg: 'You need to add a photo and a description' });
   } catch (err) {
-    return res.json({ error: err });
+    return res.status(404).json({ error: err });
   }
 }
 
@@ -31,7 +29,7 @@ export const getPosts = async (req: Request, res: Response) => {
 
     return res.json(posts);
   } catch (err) {
-    return res.json({ error: err });
+    return res.status(404).json({ error: err });
   }
 }
 
@@ -44,6 +42,6 @@ export const getUserPosts = async (req: Request, res: Response) => {
 
     return res.json(post);
   } catch (err) {
-    return res.json({ error: err.message });
+    return res.status(404).json({ error: err.message });
   }
 }

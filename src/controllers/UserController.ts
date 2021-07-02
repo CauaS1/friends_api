@@ -21,8 +21,7 @@ export const getUser = async (req: Request, res: Response) => {
     return res.json({ user });
 
   } catch (err) {
-    return res.json({ error: err.message });
-
+    return res.status(404).json({ error: err.message });
   }
 }
 
@@ -42,7 +41,7 @@ export const register = async (req: Request, res: Response) => {
       return res.json({ user });
     })
   } else {
-    return res.json({ msg: 'Already exist an account with email!' });
+    return res.status(404).json({ msg: 'Already exist an account with email!' });
   }
 }
 
@@ -88,6 +87,6 @@ export const editUser = async (req: Request, res: Response) => {
 
     return res.json(updated_user);
   } catch (err) {
-    return res.json({ error: err.message });
+    return res.status(404).json({ error: err.message });
   }
 }
